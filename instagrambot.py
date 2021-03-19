@@ -42,7 +42,7 @@ def renameMedia():
 		if 'REMOVE_ME' in filename:
 			name = '.'.join(filename.split('.')[:2])
 			os.rename(f'./media/{filename}', f'./media/{name}')
-renameMedia()
+#renameMedia()
 
 class InstaBot:
 	def __init__(self, u, p):
@@ -59,7 +59,7 @@ class Post:
 		url = 'https://www.reddit.com/r/memes/'
 		chrome_options = Options()
 		chrome_options.add_argument("--headless")
-		driver = webdriver.Chrome('C:\\Users\\User\\Downloads\\chromedriver_win32\\chromedriver', options=chrome_options)
+		driver = webdriver.Chrome('./chromedriver', options=chrome_options)
 		driver.get(url)
 		html = driver.page_source
 
@@ -124,5 +124,5 @@ bot = InstaBot(config('ACC_USERNAME'), config('ACC_PASSWORD'))
 
 Post.upload_posts(bot)
 
-renameMedia()
+#renameMedia()
 
