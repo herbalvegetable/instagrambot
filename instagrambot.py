@@ -1,4 +1,5 @@
 from instabot import Bot
+
 import os
 import shutil
 from shutil import copyfile
