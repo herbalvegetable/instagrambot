@@ -25,13 +25,16 @@ def set_interval(func, sec):
 def init():
 	try:
 		shutil.rmtree('config')
+	except Exception as e:
+		print(e)
+	try:
 		if not os.path.exists('media'): #create media dir if not exist
 		    os.makedirs('media')
 		else:
 			for filename in os.listdir('./media'):
 				os.remove(f'./media/{filename}')
-	except:
-		pass
+	except Exception as e:
+		print(e)
 init()
 
 def renameMedia():
