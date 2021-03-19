@@ -22,6 +22,7 @@ def set_interval(func, sec):
     t = threading.Timer(sec, func_wrapper)
     t.start()
     return t
+
 def init():
 	try:
 		shutil.rmtree('config')
@@ -108,11 +109,12 @@ class Post:
 		# https://stackoverflow.com/questions/65609981/python-instabot-error-photo-does-not-have-a-compatible-photo-aspect-ratio
 		for post in Post.posts:
 			try:
-				caption = f'{post["title"]}\n\nPosted by: {post["op"]}\n\nSubreddit: r/memes'
-				if not bot.upload(post['filename'], caption):
-					with Image.open(post['filename']) as im:
-						im.resize([1080, 1080]).convert("RGB").save(post['filename'])
-					bot.upload(post['filename'], caption)
+				if 'src' in post:
+					caption = f'{post["title"]}\n\nPosted by: {post["op"]}\n\nSubreddit: r/memes'
+					if not bot.upload(post['filename'], caption):
+						with Image.open(post['filename']) as im:
+							im.resize([1080, 1080]).convert("RGB").save(post['filename'])
+						bot.upload(post['filename'], caption)
 			except Exception as e:
 				print(e)
 
